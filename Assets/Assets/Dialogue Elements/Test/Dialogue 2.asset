@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd3bcd00390ee842a96d934cf6f2e42, type: 3}
   m_Name: Dialogue 2
   m_EditorClassIdentifier: 
-  text: 
+  text: It loops!
   choices: []
   tags: choices=false
-  next: {fileID: 0}
+  next: {fileID: 11400000, guid: 487083183763c594683addd7515314f0, type: 2}
+  sprite: {fileID: 0}

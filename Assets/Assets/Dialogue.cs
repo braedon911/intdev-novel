@@ -10,6 +10,7 @@ public class Dialogue : ScriptableObject
     public Choice[] choices;
     public string tags;
     public Dialogue next;
+    public Sprite sprite;
 
     public int ChoiceCount()
     {

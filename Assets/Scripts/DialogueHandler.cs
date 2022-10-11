@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using TMPro;
 
+
 public class DialogueHandler : MonoBehaviour
 {
     public List<Dialogue> dialogueset;
@@ -12,10 +13,13 @@ public class DialogueHandler : MonoBehaviour
     Dictionary<string, bool> currentTags;
 
     [Header("Text Objects")]
+    public Image image;
     public GameObject buttonPrefab;
     public GameObject buttonPanel;
     public GameObject nextButton;
-    public float width = 647f;
+
+    int width = 637;
+
     List<GameObject> choiceButtons;
     public TMP_Text textBox;
 
@@ -57,8 +61,8 @@ public class DialogueHandler : MonoBehaviour
                 choiceButtons.Add(button);
 
                 var buttonTransform = button.GetComponent<RectTransform>();
-                buttonTransform.anchoredPosition = new Vector2(width / (count + 1), buttonTransform.anchoredPosition.y);
-
+                buttonTransform.pivot = new Vector2((i+1)/((float)(count+1)),0f);
+                Debug.Log(buttonTransform.anchoredPosition.x);
                 TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
                 buttonText.text = currentDialogue.choices[i].name;
 
@@ -70,6 +74,9 @@ public class DialogueHandler : MonoBehaviour
         else
         {
             nextButton.SetActive(true);
+        }
+        if (currentTags.GetValueOrDefault("sprite", false)) {
+            image.sprite = currentDialogue.sprite;
         }
     }
 }
