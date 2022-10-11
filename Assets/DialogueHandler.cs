@@ -13,11 +13,25 @@ public class Dialogue
 {
     public string text;
     public string[] choices;
-    [HideInInspector]
-    public int choice_count;
+    public string tags;
 
-    public void Load()
+    public int ChoiceCount()
     {
-        choice_count = choices.Length;
+        return choices.Length; 
+    }
+    public Dictionary<string, bool> GetTags()
+    {
+        //playin around with stuff like a tag system. for marking dialogue as particular to a character, for now
+        Dictionary<string, bool> tagsFormat = new Dictionary<string, bool>();
+        string[] pairs = tags.Split(char.Parse(","));
+        foreach (string pair in pairs)
+        {
+            string[] keyandval = pair.Split(char.Parse("="));
+            string key = keyandval[0];
+            bool value = keyandval[1] == "true";
+            tagsFormat.Add(key, value);
+        }
+
+        return tagsFormat;
     }
 }
