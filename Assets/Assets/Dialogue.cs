@@ -2,22 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueHandler : MonoBehaviour
+[CreateAssetMenu(fileName = "Dialogue", menuName = "Dialogue", order = 1)]
+public class Dialogue : ScriptableObject
 {
-    public List<Dialogue> dialogueset;
-
-    
-}
-[System.Serializable]
-public class Dialogue
-{
+    [TextArea()]
     public string text;
     public string[] choices;
     public string tags;
 
     public int ChoiceCount()
     {
-        return choices.Length; 
+        return choices.Length;
     }
     public Dictionary<string, bool> GetTags()
     {
