@@ -7,12 +7,16 @@ public class Dialogue : ScriptableObject
 {
     [TextArea()]
     public string text;
-    public string[] choices;
+    public Choice[] choices;
     public string tags;
 
     public int ChoiceCount()
     {
         return choices.Length;
+    }
+    public Dialogue GetNextFromChoiceIndex(int index)
+    {
+        return choices[index].link;
     }
     public Dictionary<string, bool> GetTags()
     {
@@ -29,4 +33,11 @@ public class Dialogue : ScriptableObject
 
         return tagsFormat;
     }
+}
+
+[System.Serializable]
+public class Choice
+{
+    public Dialogue link;
+    public string name;
 }

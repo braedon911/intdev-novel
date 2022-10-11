@@ -5,6 +5,7 @@ using UnityEngine;
 public class DialogueHandler : MonoBehaviour
 {
     public List<Dialogue> dialogueset;
+    public GameObject choiceWheel;
 
     public void NextDialogue()
     {
