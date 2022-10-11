@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 using TMPro;
 
 public class DialogueHandler : MonoBehaviour
@@ -12,6 +14,7 @@ public class DialogueHandler : MonoBehaviour
     [Header("Text Objects")]
     public GameObject buttonPrefab;
     public GameObject buttonPanel;
+    public GameObject nextButton;
     public float width = 647f;
     List<GameObject> choiceButtons;
     public TMP_Text textBox;
@@ -19,11 +22,18 @@ public class DialogueHandler : MonoBehaviour
     public void Start()
     {
         currentDialogue = dialogueset[0];
+        choiceButtons = new List<GameObject>();
         LoadCurrentDialogue();
     }
     public void Choose(int choice)
     {
-
+        currentDialogue = currentDialogue.choices[choice -1].link;
+        LoadCurrentDialogue();
+    }
+    public void Next()
+    {
+        currentDialogue = currentDialogue.next;
+        LoadCurrentDialogue();
     }
     public void LoadCurrentDialogue()
     {
@@ -39,6 +49,7 @@ public class DialogueHandler : MonoBehaviour
 
         if (currentTags.GetValueOrDefault("choices", false))
         {
+            nextButton.SetActive(false);
             var count = currentDialogue.ChoiceCount();
             for (int i = 0; i < count; i++)
             {
@@ -46,9 +57,19 @@ public class DialogueHandler : MonoBehaviour
                 choiceButtons.Add(button);
 
                 var buttonTransform = button.GetComponent<RectTransform>();
-                buttonTransform.anchoredPosition = new Vector2(647 / (count + 1), buttonTransform.anchoredPosition.y);
+                buttonTransform.anchoredPosition = new Vector2(width / (count + 1), buttonTransform.anchoredPosition.y);
 
+                TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+                buttonText.text = currentDialogue.choices[i].name;
+
+                Button interactable = button.GetComponent<Button>();
+                //mwahahahahaaaaaaaaaaaa IM EVIL
+                interactable.onClick.AddListener(() => Choose(i));
             }
+        }
+        else
+        {
+            nextButton.SetActive(true);
         }
     }
 }

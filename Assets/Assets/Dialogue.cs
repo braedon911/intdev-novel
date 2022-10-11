@@ -9,6 +9,7 @@ public class Dialogue : ScriptableObject
     public string text;
     public Choice[] choices;
     public string tags;
+    public Dialogue next;
 
     public int ChoiceCount()
     {
@@ -28,9 +29,10 @@ public class Dialogue : ScriptableObject
             string[] keyandval = pair.Split(char.Parse("="));
             string key = keyandval[0];
             bool value = keyandval[1] == "true";
+            Debug.Log(key + "=" + value);
             tagsFormat.Add(key, value);
         }
-
+        
         return tagsFormat;
     }
 }
