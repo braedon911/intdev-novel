@@ -31,7 +31,8 @@ public class DialogueHandler : MonoBehaviour
     }
     public void Choose(int choice)
     {
-        currentDialogue = currentDialogue.choices[choice -1].link;
+        Debug.Log(choice);
+        currentDialogue = currentDialogue.choices[choice].link;
         LoadCurrentDialogue();
     }
     public void Next()
@@ -50,7 +51,10 @@ public class DialogueHandler : MonoBehaviour
             Destroy(button);
         }
         choiceButtons.Clear();
-
+        if (currentTags.GetValueOrDefault("end", false))
+        {
+            Application.Quit();
+        }
         if (currentTags.GetValueOrDefault("choices", false))
         {
             nextButton.SetActive(false);
@@ -68,7 +72,8 @@ public class DialogueHandler : MonoBehaviour
 
                 Button interactable = button.GetComponent<Button>();
                 //mwahahahahaaaaaaaaaaaa IM EVIL
-                interactable.onClick.AddListener(() => Choose(i));
+                int cap_i = i;
+                interactable.onClick.AddListener(delegate{ Choose(cap_i); });
             }
         }
         else

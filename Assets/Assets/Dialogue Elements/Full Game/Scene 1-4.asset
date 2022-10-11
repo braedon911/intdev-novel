@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfd3bcd00390ee842a96d934cf6f2e42, type: 3}
-  m_Name: Scene 1-2
+  m_Name: Scene 1-4
   m_EditorClassIdentifier: 
-  text: What time is it, anyway?
+  text: 'That''s a bold-faced lie, Rose. '
   choices:
-  - link: {fileID: 11400000, guid: 008103f583c9655468a151b1806241e7, type: 2}
-    name: 2:03 PM (Honest)
-  - link: {fileID: 11400000, guid: b8fe7647ecd090c40b26d9beb38156e5, type: 2}
-    name: 10:00 AM (Lie)
   - link: {fileID: 11400000, guid: 9729ddb1b5f35a94f80c33b03517e02f, type: 2}
-    name: Please just let me sleep, Micah.
-  tags: choices=true
+    name: Sorry...
+  - link: {fileID: 11400000, guid: 9729ddb1b5f35a94f80c33b03517e02f, type: 2}
+    name: ...
+  tags: choices=true,sprite=true
   next: {fileID: 0}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 62247c89547ed5143ba170c3a48e4653, type: 3}
